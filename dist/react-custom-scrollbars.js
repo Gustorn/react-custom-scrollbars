@@ -850,6 +850,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }, {
 	        key: 'handleWindowResize',
 	        value: function handleWindowResize() {
+	            (0, _getScrollbarWidth.resetScrollbarWidth)();
 	            this.update();
 	        }
 	    }, {
@@ -1371,6 +1372,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
+	exports.resetScrollbarWidth = resetScrollbarWidth;
 	exports["default"] = getScrollbarWidth;
 
 	var _domCss = __webpack_require__(1);
@@ -1380,10 +1382,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 	var scrollbarWidth = false;
-	var previousDpr = undefined;
+
+	function resetScrollbarWidth() {
+	    scrollbarWidth = false;
+	}
 
 	function getScrollbarWidth() {
-	    if (scrollbarWidth !== false && window.devicePixelRatio === previousDpr) return scrollbarWidth;
+	    if (scrollbarWidth !== false) return scrollbarWidth;
 	    /* istanbul ignore else */
 	    if (typeof document !== 'undefined') {
 	        var div = document.createElement('div');
@@ -1401,7 +1406,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	    } else {
 	        scrollbarWidth = 0;
 	    }
-	    previousDpr = window.devicePixelRatio;
 	    return scrollbarWidth || 0;
 	}
 

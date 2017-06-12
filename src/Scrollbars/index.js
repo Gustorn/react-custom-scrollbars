@@ -4,7 +4,7 @@ import { Component, createElement, cloneElement } from 'react';
 import PropTypes from 'prop-types';
 
 import isString from '../utils/isString';
-import getScrollbarWidth from '../utils/getScrollbarWidth';
+import getScrollbarWidth, { resetScrollbarWidth } from '../utils/getScrollbarWidth';
 import returnFalse from '../utils/returnFalse';
 import getInnerWidth from '../utils/getInnerWidth';
 import getInnerHeight from '../utils/getInnerHeight';
@@ -271,6 +271,7 @@ export default class Scrollbars extends Component {
     }
 
     handleWindowResize() {
+        resetScrollbarWidth();
         this.update();
     }
 
