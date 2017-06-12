@@ -1,8 +1,9 @@
 import css from 'dom-css';
 let scrollbarWidth = false;
+let previousDpr = undefined;
 
 export default function getScrollbarWidth() {
-    if (scrollbarWidth !== false) return scrollbarWidth;
+    if (scrollbarWidth !== false && window.devicePixelRatio === previousDpr) return scrollbarWidth;
     /* istanbul ignore else */
     if (typeof document !== 'undefined') {
         const div = document.createElement('div');
@@ -20,5 +21,6 @@ export default function getScrollbarWidth() {
     } else {
         scrollbarWidth = 0;
     }
+    previousDpr = window.devicePixelRatio;
     return scrollbarWidth || 0;
 }
